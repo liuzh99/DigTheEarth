@@ -1,4 +1,4 @@
-package liuzh.interview.poker;
+package liuzh.poker.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,23 @@ import java.util.Random;
  * @author liuzh
  * @date 2016年4月27日 下午12:18:17
  */
-public abstract class Poker {
+public class Poker {
 	
-	protected List<PokerElem> pokerElems;
+	protected List<PokerElem> pokerElems = new ArrayList<PokerElem>();
+	
+	//初始化扑克牌
+	public Poker() {
+		String[] size = new String[]{"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+		PokerElem pokerElem = null;
+		for(PokerType pokerType : PokerType.values()){
+			for(String s : size){
+				pokerElem = new PokerElem();
+				pokerElem.setPokerType(pokerType);
+				pokerElem.setSize(s);
+				pokerElems.add(pokerElem);
+			}
+		}
+	}
 	
 	
 	/**
@@ -22,7 +36,7 @@ public abstract class Poker {
 	 * 然后随机从拷贝的扑克牌中移动到新的集合
 	 * 最终得到一副新的扑克牌
 	 */
-	public void doRandom(){
+	private void doRandom(){
 		List<PokerElem> temp = new ArrayList<PokerElem>();
 		temp.addAll(pokerElems);
 		Random random = new Random();
@@ -39,6 +53,7 @@ public abstract class Poker {
 	 * 获取扑克牌集合
 	 */
 	public List<PokerElem> getPokerCollection(){
+		doRandom();
 		return pokerElems;
 	}
 

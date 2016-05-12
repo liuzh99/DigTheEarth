@@ -1,7 +1,12 @@
-package liuzh.interview.poker;
+package liuzh.poker.controler;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import liuzh.poker.domain.Poker;
+import liuzh.poker.domain.Player;
+import liuzh.poker.exception.DealerException;
+import liuzh.poker.exception.PokerException;
 
 /**
  * title:Dealer
@@ -10,19 +15,10 @@ import java.util.List;
  * @date 2016年4月27日 下午10:10:22
  */
 public abstract class Dealer {
-	
-	protected Poker poker;
-	protected List<Player> players;
-	
-	/**
-	 * 初始化发牌器
-	 */
-	public Dealer() {
-		//创建锄大地扑克牌
-		poker = (Poker) Factory.getBean("Poker");
-		//初始化玩家集合
-		players = new ArrayList<Player>();
-	}
+	//锄大地扑克牌
+	protected Poker poker = new Poker();
+	//玩家集合
+	protected List<Player> players = new ArrayList<Player>();
 	
 	/**
 	 * 添加玩家

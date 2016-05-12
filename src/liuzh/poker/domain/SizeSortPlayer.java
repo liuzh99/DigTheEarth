@@ -1,4 +1,5 @@
-package liuzh.interview.poker;
+package liuzh.poker.domain;
+
 
 /**
  * title:SortPlayer
@@ -7,45 +8,12 @@ package liuzh.interview.poker;
  * @date 2016年4月27日 下午12:11:10
  */
 public class SizeSortPlayer extends Player {
-	//百度百科-锄大地 查找到的大小
-	private String[] size = new String[]{"2","A","K","Q","J","10","9","8","7","6","5","4","3"};
-
+	
 	public SizeSortPlayer() {
 	}
 	
 	public SizeSortPlayer(Integer id, String name) {
 		super(id,name);
-	}
-
-	/**
-	 * 根本size数组定义的规律，比较size1,size2的大小
-	 * @param size1
-	 * @param size2
-	 * @return 0  相同
-	 * @return -1 size1 < size2
-	 * @return 1  size1 > size2
-	 */
-	private int compare(String size1,String size2){
-		int index1 = -1, index2 = -1;
-		for(int i=0;i<size.length;i++){
-			if(size1.equals(size[i])){
-				index1 = i;
-			}
-			if(size2.equals(size[i])){
-				index2 = i;
-			}
-			if(index1 != -1 && index2 != -1){
-				break;
-			}
-		}
-		//索引越靠前，权值越大
-		if(index1 > index2){
-			return -1;
-		}
-		if(index1 < index2){
-			return 1;
-		}
-		return 0;
 	}
 	
 	/**
@@ -76,7 +44,7 @@ public class SizeSortPlayer extends Player {
 			//花色相同才继续做对比
 			if(pokerElems.get(index).getPokerType().equals(pokerType)){
 				//2.1
-				if(compare(pokerElems.get(index).getSize(),addPokerElem.getSize()) == -1){
+				if(pokerElems.get(index).compareTo(addPokerElem) == -1){
 					pokerElems.add(index,addPokerElem);
 					return;
 				}

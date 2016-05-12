@@ -1,4 +1,4 @@
-package liuzh.interview.poker;
+package liuzh.poker.exception;
 
 /**
  * title:PokerException

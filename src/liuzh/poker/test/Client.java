@@ -1,9 +1,16 @@
-package liuzh.interview.poker;
+package liuzh.poker.test;
+
+import liuzh.poker.controler.Dealer;
+import liuzh.poker.domain.Player;
+import liuzh.poker.exception.DealerException;
+import liuzh.poker.exception.PokerException;
+import liuzh.poker.factory.Factory;
 
 public class Client {
 
 	public static void main(String[] args) {
-		CommonDealer commonDealer = new CommonDealer();
+		Dealer dealer = (Dealer) Factory.getBean("Dealer");
+		//创建玩家
 		Player player1 = (Player) Factory.getBean("Player");
 		player1.setId(1);
 		player1.setName("玩家1");
@@ -16,13 +23,14 @@ public class Client {
 		Player player4 = (Player) Factory.getBean("Player");
 		player4.setId(4);
 		player4.setName("玩家4");
-		commonDealer.addPlayer(player1);
-		commonDealer.addPlayer(player2);
-		commonDealer.addPlayer(player3);
-		commonDealer.addPlayer(player4);
+		//添加玩家
+		dealer.addPlayer(player1);
+		dealer.addPlayer(player2);
+		dealer.addPlayer(player3);
+		dealer.addPlayer(player4);
 		try {
-			commonDealer.deal();
-			commonDealer.display();
+			dealer.deal();
+			dealer.display();
 		} catch (PokerException e) {
 			e.printStackTrace();
 		} catch (DealerException e) {

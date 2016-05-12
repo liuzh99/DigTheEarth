@@ -1,6 +1,10 @@
-package liuzh.interview.poker;
+package liuzh.poker.controler;
 
 import java.util.List;
+
+import liuzh.poker.domain.PokerElem;
+import liuzh.poker.exception.DealerException;
+import liuzh.poker.exception.PokerException;
 
 /**
  * title:常规发牌器
@@ -16,7 +20,6 @@ public class CommonDealer extends Dealer {
 
 	@Override
 	public void deal() throws PokerException, DealerException {
-		poker.doRandom();
 		List<PokerElem> pokerElems = (List<PokerElem>) poker.getPokerCollection();
 		if(pokerElems.size() != 52){
 			throw new PokerException("扑克牌不是52张");

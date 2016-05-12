@@ -1,4 +1,4 @@
-package liuzh.interview.poker;
+package liuzh.poker.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,15 @@ public abstract class Player {
 	
 	protected Integer id;
 	protected String name;
-	protected List<PokerElem> pokerElems;
+	protected List<PokerElem> pokerElems = new ArrayList<PokerElem>();
 	
 	public Player() {
 		super();
-		pokerElems = new ArrayList<PokerElem>();
 	}
 	public Player(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		pokerElems = new ArrayList<PokerElem>();
 	}
 	public Integer getId() {
 		return id;
