@@ -1,7 +1,8 @@
 package liuzh.poker.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * title:扑克牌玩家
@@ -9,11 +10,11 @@ import java.util.List;
  * @author liuzh
  * @date 2016年4月26日 下午11:42:05
  */
-public abstract class Player {
+public class Player {
 	
 	protected Integer id;
 	protected String name;
-	protected List<PokerElem> pokerElems = new ArrayList<PokerElem>();
+	protected Set<PokerElem> pokerElems = new TreeSet<PokerElem>();
 	
 	public Player() {
 		super();
@@ -35,19 +36,20 @@ public abstract class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public List<PokerElem> getPokerElems() {
+
+	public Set<PokerElem> getPokerElems() {
 		return pokerElems;
 	}
-	public void setPokerElems(List<PokerElem> pokerElems) {
+	public void setPokerElems(Set<PokerElem> pokerElems) {
 		this.pokerElems = pokerElems;
 	}
-
 	public void removeAll(){
 		pokerElems.removeAll(pokerElems);
 	}
 	
-	public abstract void addPokerElem(PokerElem pokerElem);
+	public void addPokerElem(PokerElem pokerElem){
+		pokerElems.add(pokerElem);
+	}
 	
 	@Override
 	public String toString() {

@@ -31,7 +31,8 @@ public class PokerElem implements Comparable<PokerElem>{
 		return pokerType.toString() + size;
 	}
 	/**
-	 * 根据sizes数组定义的规律，比较两张扑克牌的大小
+	 * 花色可以直接比较出大小，如果花色相同，
+	 * 则根据sizes数组定义的规律，比较两张扑克牌的大小
 	 * @param elem
 	 * @return 0  相同
 	 * @return -1 传入的为大
@@ -39,26 +40,32 @@ public class PokerElem implements Comparable<PokerElem>{
 	 */
 	@Override
 	public int compareTo(PokerElem elem) {
-		int indexIn = -1, indexOut = -1;
-		for(int i=0;i<sizes.length;i++){
-			if(this.size.equals(sizes[i])){
-				indexIn = i;
-			}
-			if(elem.size.equals(sizes[i])){
-				indexOut = i;
-			}
-			if(indexIn != -1 && indexOut != -1){
-				break;
-			}
-		}
-		//索引越靠前，权值越大
-		if(indexIn > indexOut){
+		if(this.pokerType.ordinal() < elem.pokerType.ordinal()){
 			return -1;
-		}
-		if(indexIn < indexOut){
+		}else if(this.pokerType.ordinal() > elem.pokerType.ordinal()){
 			return 1;
+		}else{
+			int indexIn = -1, indexOut = -1;
+			for(int i=0;i<sizes.length;i++){
+				if(this.size.equals(sizes[i])){
+					indexIn = i;
+				}
+				if(elem.size.equals(sizes[i])){
+					indexOut = i;
+				}
+				if(indexIn != -1 && indexOut != -1){
+					break;
+				}
+			}
+			//索引越靠前，权值越大
+			if(indexIn < indexOut){
+				return -1;
+			}
+			if(indexIn > indexOut){
+				return 1;
+			}
+			return 0;
 		}
-		return 0;
 	}
 
 }

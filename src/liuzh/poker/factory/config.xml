@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <config>
-	<Player>liuzh.poker.domain.SizeSortPlayer</Player>
+	<Player>liuzh.poker.domain.Player</Player>
 	<Dealer>liuzh.poker.controler.CommonDealer</Dealer>
 </config>
